@@ -70,7 +70,7 @@ if(page==='composition'){
 main.querySelectorAll('.wide-diagram').forEach(el=>{
  const row=document.createElement('article');row.className='editorial-row library-row overview-row';
  const fig=document.createElement('figure');fig.className='concept-visual';while(el.firstChild)fig.appendChild(el.firstChild);
- fig.insertAdjacentHTML('beforeend',el.closest('#story-circle')?dual('哈蒙八步：需求、探索、代价与返回连成循环','Harmon’s eight steps: need, search, cost and return form a cycle','figcaption'):dual('坎贝尔十七母题：出发、启蒙与归返三阶段','Campbell’s seventeen motifs across departure, initiation and return','figcaption'));
+ if(!fig.querySelector('.book-highlight-caption'))fig.insertAdjacentHTML('beforeend',el.closest('#story-circle')?dual('哈蒙八步：需求、探索、代价与返回连成循环','Harmon’s eight steps: need, search, cost and return form a cycle','figcaption'):dual('母题与常见变体，不是必须逐项完成的清单。','Motifs and common variations, not a mandatory checklist.','figcaption'));
  const copy=document.createElement('div');copy.className='row-copy';
  const circle=el.closest('#story-circle');
  copy.innerHTML=dual('先看整体，再读每一步','Read the whole before the steps','h3')+dual(circle?'先看需求、出发、代价与返回怎样连成循环；下方八步把这个循环拆成可拍的行动，不是固定时长或强制顺序。':'先看出发、历险、归返的关系；下方逐项说明如何把变化落实到行动与人物关系。图形不规定固定时长。',circle?'See how need, departure, cost and return connect. The eight steps below turn this cycle into filmable actions, not compulsory timing or order.':'See the relation between departure, initiation and return, then read how change becomes action and relationships. The diagram does not prescribe timing.','p');
