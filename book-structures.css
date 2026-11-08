@@ -435,16 +435,29 @@ body[data-volume=freytag] .library-row:has(svg[data-structure="pyramid"]) .conce
   display:block;
   width:min(100%,1180px);
   min-width:880px;
-  max-width:none;
+  max-width:100%;
   height:auto;
   max-height:none;
+  margin-left:auto;
+  margin-right:auto;
   aspect-ratio:auto;
   object-fit:contain;
   background:#111;
 }
+/* Titles, plates, and captions share one centered column. */
+.pdf-course :is(.poetics-trio,.poetics-chain,.act-paradigm,.pyramid-study) .book-structure-visual > :is(.book-model-name,.book-focus-heading,.book-highlight-caption,.act-diagram-key,.poetics-secondary-key,.freytag-force-caption,.freytag-climax-note,.freytag-crisis-key,.book-stage-labels,.book-phase-key),
+.pdf-course .library-row:has(svg[data-structure="tension"]) .book-structure-visual > :is(.book-model-name,.book-focus-heading,.book-highlight-caption,.act-diagram-key,.poetics-secondary-key,.book-stage-labels),
+.pdf-course .library-row:has(svg[data-structure="pyramid"]) .book-structure-visual > :is(.book-model-name,.book-focus-heading,.book-highlight-caption,.freytag-force-caption,.freytag-climax-note,.freytag-crisis-key,.book-stage-labels),
+.pdf-course .book-card-panel .book-structure-visual > :is(.book-model-name,.book-focus-heading,.book-highlight-caption,.act-diagram-key,.poetics-secondary-key,.freytag-force-caption,.freytag-climax-note,.freytag-crisis-key,.book-stage-labels,.book-phase-key){
+  width:min(100%,1180px);
+  max-width:100%;
+  margin-left:auto;
+  margin-right:auto;
+  box-sizing:border-box;
+}
 .pdf-course .concept-visual svg.book-structure-art[data-structure="pyramid"],
 .pdf-course figure svg.book-structure-art[data-structure="pyramid"],
-.pdf-course .book-card-panel svg.book-structure-art[data-structure="pyramid"]{min-width:1040px;aspect-ratio:1280/640}
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="pyramid"]{min-width:0;aspect-ratio:1280/640}
 .pdf-course .concept-visual svg.book-structure-art[data-structure="tension"],
 .pdf-course figure svg.book-structure-art[data-structure="tension"],
 .pdf-course .book-card-panel svg.book-structure-art[data-structure="tension"]{aspect-ratio:960/590}
@@ -454,3 +467,26 @@ body[data-volume=freytag] .library-row:has(svg[data-structure="pyramid"]) .conce
 .pdf-course .concept-visual svg.book-structure-art[data-structure="causal"],
 .pdf-course figure svg.book-structure-art[data-structure="causal"],
 .pdf-course .book-card-panel svg.book-structure-art[data-structure="causal"]{aspect-ratio:980/490}
+/* The 900px pyramid frame and the 960px books column were narrower than the plate, so the drawing overflowed to the right. */
+.pdf-course .pyramid-study{
+  width:min(100%,1180px);
+  max-width:min(100%,1180px);
+  margin-left:auto;
+  margin-right:auto;
+}
+.pdf-course .pyramid-study .book-structure-visual,
+body[data-volume=books] .book-card-panel .book-structure-visual:has(svg[data-structure="pyramid"]){
+  width:min(100%,1180px);
+  max-width:100%;
+  margin-left:auto;
+  margin-right:auto;
+}
+.pdf-course .pyramid-study svg.book-structure-art,
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="pyramid"]{
+  width:100%;
+  min-width:0;
+  max-width:100%;
+  max-height:none;
+  margin-left:auto;
+  margin-right:auto;
+}
