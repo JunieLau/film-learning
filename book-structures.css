@@ -22,8 +22,12 @@ body[data-volume=story] .act-strip{grid-template-columns:20fr 60fr 20fr}
 
 .freytag-crisis-key{display:grid;gap:5px;margin-top:9px;font-size:13px;line-height:1.4}
 html[data-mode=bi] .freytag-crisis-key .en{display:none!important}
+.poetics-secondary-key{margin-top:8px;font-size:13px;line-height:1.45;color:#c8c5bf}
+html[data-mode=bi] .poetics-secondary-key .en{display:none!important}
 
 body svg.book-structure-art .freytag-transitions circle{fill:#f5d266}
+body svg.book-structure-art .poetics-hinge,
+body svg.book-structure-art .tension-marks circle{fill:#f5d266;stroke:#f5d266}
 
 /* Books hub: five equal selectors in one row; one detail panel below. */
 body[data-volume=books] .books-hub{margin:8px 0 28px}
