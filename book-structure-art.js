@@ -89,63 +89,125 @@ function drawHeroWheel(model){
   :'Vogler twelve stages. Diameter: ordinary world (known) above, special world (unknown) below. Act bands 1–5, 6–9, and 10–12.';
  return {body:`<desc>${esc(desc)}</desc>`+body, view:`0 0 ${W} ${H}`};
 }
-window.BookStructureArt=(type,options={})=>{const model=options.model||({beats:'beats',three:'three',pyramid:'pyramid',cycle:'harmon',causal:'aristotle',tension:'tension'}[type]);const labels=options.labels||models[model];if(!labels)throw Error('Missing named model '+model);const active=options.focus||((options.active??-1)>=0?[options.active]:[]);const chosen=i=>!active.length||active.includes(i);const names={campbell:['坎贝尔 · 十七母题','Campbell · seventeen motifs'],vogler:['沃格勒 · 十二阶段','Vogler · twelve stages'],harmon:['哈蒙 · 八步圆环','Harmon · eight-step circle'],beats:['救猫咪 · 十五节拍','Save the Cat · fifteen beats'],three:['现代三幕 · 悉德·菲尔德','Modern three acts · Syd Field'],aristotle:['《诗学》· 开端→中间→结尾','Poetics · beginning → middle → end'],tension:['现代三幕张力示意 · 当代教学图，不是《诗学》，也不是亚⁠里⁠士⁠多⁠德','Three-act tension sketch · teaching diagram, not Poetics or Aristotle'],pyramid:['弗赖塔格 · 五部分金字塔','Freytag · five-part pyramid']};const title=options.title||names[model]||['结构关系','Structural relation'];const focusTitle=options.heading||(!active.length?(type==='beats'?['0–100% · 幕间在约 25% 与 80%','0–100% · act breaks near 25% and 80%']:model==='campbell'?['出发 · 启蒙 · 归返','Departure · Initiation · Return']:model==='vogler'?['日常／特殊 · 1–5 / 6–9 / 10–12','Ordinary / special · 1–5 / 6–9 / 10–12']:['完整结构','Complete structure']):[labels[active[0]][0],labels[active[0]][1]]);const number=(x,y,i)=>`<g data-stage="${i+1}" opacity="${chosen(i)?1:.26}"><circle cx="${x}" cy="${y}" r="${labels.length>12?7:10}" fill="#111" stroke="${chosen(i)?'#f5d266':'#aaa'}" stroke-width="${chosen(i)?2.5:1}"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" fill="#eee" stroke="none" font-family="sans-serif" font-size="${labels.length>12?8:10}">${i+1}</text></g>`;const label=(z,e,x,y)=>[ ['zh',z],['en',e] ].map(([lang,lines])=>`<text class="diagram-label ${lang}" x="${x}" y="${y}" text-anchor="middle" fill="#eee" stroke="none">${(Array.isArray(lines)?lines:[lines]).map((line,j)=>`<tspan x="${x}" dy="${j?14:0}">${esc(line)}</tspan>`).join('')}</text>`).join('');let body='',phases=[],viewBox='0 0 360 203',artClass='library-line book-structure-art',wheelKind='';const nodeLabel=(z,e,x,y)=>['zh','en'].map(lang=>`<text class="diagram-label ${lang}" x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" fill="#eee" stroke="none">${esc(lang==='zh'?z:e)}</text>`).join('');const stack=(z,e,x,y)=>`<text class="diagram-label zh" x="${x}" y="${y}" text-anchor="middle" fill="#eee" stroke="none">${esc(z)}</text><text class="diagram-label en" x="${x}" y="${y+18}" text-anchor="middle" fill="#c8c5bf" stroke="none">${esc(e)}</text>`;
+
+/* Self-drawn plates. Every stage and force is spelled on the drawing.
+   Aristotle’s chain, Field’s line, the late-climax arc, and Freytag’s pyramid
+   stay different shapes. No third-party artwork. */
+function drawFieldLine({stack,chosen,active}){
+ const x0=70,x1=890,span=x1-x0,b1=x0+span*.25,b2=x0+span*.75,y=248;
+ const bands=[[x0,b1],[b1,b2],[b2,x1]];
+ const mid=i=>(bands[i][0]+bands[i][1])/2;
+ const dim=i=>!active.length||active.includes(i)?1:.28;
+ const acts=[
+  ['第一幕','Act I','铺陈／建置','Setup','约 30 页','~30 pages'],
+  ['第二幕','Act II','对抗','Confrontation','约 60 页','~60 pages'],
+  ['第三幕','Act III','解决／结局','Resolution','约 30 页','~30 pages']
+ ];
+ const inc=x0+span*.12, clx=x0+span*.88;
+ const cross=x=>`<path d="M${x-9} ${y-9}l18 18M${x+9} ${y-9}l-18 18" stroke="#f5d266" stroke-width="2.6"/>`;
+ let body=`<g data-diagram="field-line"><desc>Syd Field horizontal paradigm, about 30/60/30 pages. Plot Point I and Plot Point II are vertical bars. Inciting Incident is inside Act I. Climax is late in Act III. Not Poetics and not Freytag.</desc>`;
+ body+=acts.map((a,i)=>`<g data-stage="${i+1}" opacity="${dim(i)}">${stack(a[0],a[1],mid(i),48)}${stack(a[2],a[3],mid(i),112)}${stack(a[4],a[5],mid(i),176)}</g>`).join('');
+ body+=`<path class="field-timeline" d="M${x0} ${y}H${x1}" stroke="#eee" stroke-width="7"/>`;
+ body+=`<path d="M${x1-1} ${y-8}l16 8-16 8" fill="none" stroke="#eee" stroke-width="2"/>`;
+ body+=`<path data-plot-point="I" d="M${b1} 150V312" stroke="#eee" stroke-width="6"/><path data-plot-point="II" d="M${b2} 150V312" stroke="#eee" stroke-width="6"/>`;
+ body+=cross(inc)+cross(clx);
+ body+=stack('激励事件','Inciting Incident',inc,352);
+ body+=stack('高潮 · 第三幕后段','Climax · late Act III',clx,352);
+ body+=stack('情节点 I','Plot Point I',b1,430);
+ body+=stack('情节点 II','Plot Point II',b2,430);
+ body+='</g>';
+ return {body,view:'0 0 960 500'};
+}
+function drawTensionArc({stack}){
+ const plot0=132,span=740,yBase=454,xAxis=78,xEnd=910;
+ const X=t=>Math.round((plot0+span*t)*10)/10;
+ const b1=X(.25),b2=X(.75);
+ const pts=[[.02,424],[.13,356],[.24,330],[.36,286],[.50,232],[.62,188],[.72,150],[.86,86],[.94,164],[1,236]].map(([t,y])=>[X(t),y]);
+ let d=`M${pts[0][0]} ${pts[0][1]}`;
+ for(let i=0;i<pts.length-1;i++){
+  const p0=pts[Math.max(0,i-1)],p1=pts[i],p2=pts[i+1],p3=pts[Math.min(pts.length-1,i+2)];
+  const c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6];
+  const c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
+  d+=`C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0]} ${p2[1]}`;
+ }
+ const cross=(x,y)=>`<path class="tension-obstacle" d="M${x-7} ${y-7}l14 14M${x+7} ${y-7}l-14 14" stroke="#aaa" stroke-width="1.8"/>`;
+ const dot=(x,y,r)=>`<circle class="tension-marks" cx="${x}" cy="${y}" r="${r}" fill="#f5d266" stroke="#f5d266"/>`;
+ const [start,inc,obs1,mid,obs2,peak,fall,end]=[pts[0],pts[1],pts[3],pts[4],pts[6],pts[7],pts[8],pts[9]];
+ let body=`<g data-diagram="tension-arc" data-climax="late-act-3"><desc>Contemporary tension curve. It rises through the inciting incident and midpoint, peaks late in Act III, then falls. The midpoint is not the climax. Not Freytag’s centered peak and not a page scale.</desc>`;
+ body+=`<path d="M${xAxis} ${yBase}V58" stroke="#eee" stroke-width="1.7"/><path d="M${xAxis-7} 70l7-16 7 16" fill="none" stroke="#eee" stroke-width="1.7"/>`;
+ body+=`<path d="M${xAxis} ${yBase}H${xEnd}" stroke="#eee" stroke-width="1.7"/><path d="M${xEnd-14} ${yBase-7}l16 7-16 7" fill="none" stroke="#eee" stroke-width="1.7"/>`;
+ body+=`<path d="M${b1} 86V${yBase}M${b2} 86V${yBase}" stroke="#555" stroke-dasharray="5 6"/>`;
+ body+=`<path class="tension-curve" d="${d}" stroke="#eee" stroke-width="3" fill="none"/>`;
+ body+=cross(obs1[0],obs1[1])+cross(obs2[0],obs2[1]);
+ body+=dot(inc[0],inc[1],6.5)+dot(mid[0],mid[1],6.5)+dot(peak[0],peak[1],9);
+ body+=stack('冲突／张力','Conflict / tension',xAxis+16,36,'start');
+ body+=stack('故事进程','The story’s plot',xEnd,yBase-36,'end');
+ body+=stack('引介','Introduction',start[0]+86,start[1]-6);
+ body+=stack('激励事件','Inciting Incident',inc[0]+8,inc[1]-52);
+ body+=stack('上升','Rising action',X(.38),150);
+ body+=stack('中点','Midpoint',mid[0]+108,mid[1]-18);
+ body+=stack('障碍','Obstacle',obs1[0],obs1[1]+46);
+ body+=stack('障碍','Obstacle',obs2[0]-20,obs2[1]-52);
+ body+=stack('高潮 · 第三幕后段','Climax · late Act III',peak[0]+8,peak[1]-46);
+ body+=stack('下降','Falling action',fall[0]+24,fall[1]+8);
+ body+=stack('收束','Denouement',end[0]-36,end[1]+42);
+ const centers=[(plot0+b1)/2,(b1+b2)/2,(b2+X(1))/2];
+ [['第一幕 · 铺陈','Act I · Setup'],['第二幕 · 对抗','Act II · Confrontation'],['第三幕 · 解决','Act III · Resolution']].forEach((a,i)=>{body+=stack(a[0],a[1],centers[i],518)});
+ body+='</g>';
+ return {body,view:'0 0 960 590'};
+}
+function drawPoeticsChain({stack,chosen}){
+ const y=178;
+ const nodes=[[190,0,'开端','Beginning','行动的起因','causal start'],[490,1,'中间','Middle','承前启后','follows and leads'],[790,2,'结尾','End','完成后果','completes consequences']];
+ let body='<g data-diagram="poetics-chain" data-chain="open"><desc>Open Poetics chain: beginning, therefore middle, therefore end. A secondary line runs from complication through reversal to unraveling and does not return. Not three acts, not a loop, not a 0–120 page scale.</desc>';
+ body+=`<path d="M64 ${y}H916" stroke="#eee" stroke-width="3.2"/><path d="M900 ${y-9}l22 9-22 9" fill="none" stroke="#eee" stroke-width="2"/>`;
+ nodes.forEach(([x,i,z,e,zz,ee])=>{
+  const on=chosen(i);
+  body+=`<g data-stage="${i+1}" opacity="${on?1:.3}"><circle cx="${x}" cy="${y}" r="9" fill="#111" stroke="${on?'#f5d266':'#eee'}" stroke-width="2.5"/>${stack(z,e,x,86)}${stack(zz,ee,x,y+42)}</g>`;
+ });
+ body+=stack('所以','therefore',340,y-28)+stack('所以','therefore',640,y-28);
+ const y2=392;
+ body+=`<path d="M188 ${y2}H860" stroke="#888" stroke-width="1.7"/><path d="M846 ${y2-7}l16 7-16 7" fill="none" stroke="#888" stroke-width="1.6"/>`;
+ body+=stack('次要','secondary',78,y2-4,'start');
+ [['结','desis',250],['突转','peripeteia',490],['解','lusis',760]].forEach(([z,e,x])=>{
+  body+=`<g class="poetics-secondary"><circle class="poetics-hinge" cx="${x}" cy="${y2}" r="5.5" fill="#f5d266" stroke="#f5d266"/>${stack(z,e,x,y2+34)}</g>`;
+ });
+ body+='</g>';
+ return {body,view:'0 0 980 490'};
+}
+function drawFreytagPyramid({stack,chosen,active}){
+ const L=[230,486],P=[640,132],R=[1050,486];
+ const lerp=(a,b,t)=>[a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t];
+ const excite=lerp(L,P,.24), rise=lerp(L,P,.56);
+ const tragic=lerp(P,R,.26), fall=lerp(P,R,.56), suspense=lerp(P,R,.80);
+ const part=(i,z,e,x,y,anchor='middle')=>{
+  const on=chosen(i), mark=active.length&&on?' is-on':'';
+  return `<g data-stage="${i+1}" class="freytag-part" opacity="${on?1:.3}">${stack(z,e,x,y,anchor,mark.trim())}</g>`;
+ };
+ const gem=(pt,name)=>`<circle class="freytag-force" data-force="${name}" cx="${pt[0].toFixed(1)}" cy="${pt[1].toFixed(1)}" r="6" fill="#f5d266" stroke="#f5d266"/>`;
+ let body=`<g data-diagram="freytag-pyramid"><desc>Freytag’s symmetric five-part pyramid. Introduction, rise, centered climax, return or fall, and catastrophe are written on the slopes. Exciting force is required; tragic force and the force of final suspense are optional. The fifth part is catastrophe, not denouement.</desc>`;
+ body+=`<path d="M${L[0]} ${L[1]}L${P[0]} ${P[1]}L${R[0]} ${R[1]}Z" stroke="#eee" stroke-width="2.8" fill="none"/>`;
+ body+=`<path d="M${P[0]} ${P[1]}V${L[1]}" stroke="#555" stroke-dasharray="5 6"/>`;
+ body+=part(2,'高潮／顶点（居中）','Climax (center)',P[0],58);
+ body+=part(0,'引介（铺垫）','Introduction',L[0],L[1]+52);
+ body+=part(4,'灾变','Catastrophe',R[0],R[1]+52);
+ body+=part(1,'上升','Rise',rise[0]-78,rise[1]-36);
+ body+=part(3,'下降／回落','Return / fall',fall[0]+78,fall[1]-36);
+ body+=gem(excite,'exciting')+gem(tragic,'tragic')+gem(suspense,'final-suspense');
+ body+=stack('激发力（必要）','Exciting force',excite[0]-36,excite[1]+8,'end');
+ body+=stack('悲剧力（可选）','Tragic force',tragic[0]+28,tragic[1]-8,'start');
+ body+=stack('最后悬念之力（可选）','Force of final suspense',suspense[0]+22,suspense[1]+6,'start');
+ body+='</g>';
+ return {body,view:'0 0 1280 640'};
+}
+window.BookStructureArt=(type,options={})=>{const model=options.model||({beats:'beats',three:'three',pyramid:'pyramid',cycle:'harmon',causal:'aristotle',tension:'tension'}[type]);const labels=options.labels||models[model];if(!labels)throw Error('Missing named model '+model);const active=options.focus||((options.active??-1)>=0?[options.active]:[]);const chosen=i=>!active.length||active.includes(i);const names={campbell:['坎贝尔 · 十七母题','Campbell · seventeen motifs'],vogler:['沃格勒 · 十二阶段','Vogler · twelve stages'],harmon:['哈蒙 · 八步圆环','Harmon · eight-step circle'],beats:['救猫咪 · 十五节拍','Save the Cat · fifteen beats'],three:['现代三幕 · 悉德·菲尔德','Modern three acts · Syd Field'],aristotle:['《诗学》· 开端→中间→结尾','Poetics · beginning → middle → end'],tension:['现代三幕张力示意 · 当代教学图，不是《诗学》，也不是亚⁠里⁠士⁠多⁠德','Three-act tension sketch · teaching diagram, not Poetics or Aristotle'],pyramid:['弗赖塔格 · 五部分金字塔','Freytag · five-part pyramid']};const title=options.title||names[model]||['结构关系','Structural relation'];const focusTitle=options.heading||(!active.length?(type==='beats'?['0–100% · 幕间在约 25% 与 80%','0–100% · act breaks near 25% and 80%']:model==='campbell'?['出发 · 启蒙 · 归返','Departure · Initiation · Return']:model==='vogler'?['日常／特殊 · 1–5 / 6–9 / 10–12','Ordinary / special · 1–5 / 6–9 / 10–12']:['完整结构','Complete structure']):[labels[active[0]][0],labels[active[0]][1]]);const number=(x,y,i)=>`<g data-stage="${i+1}" opacity="${chosen(i)?1:.26}"><circle cx="${x}" cy="${y}" r="${labels.length>12?7:10}" fill="#111" stroke="${chosen(i)?'#f5d266':'#aaa'}" stroke-width="${chosen(i)?2.5:1}"/><text x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" fill="#eee" stroke="none" font-family="sans-serif" font-size="${labels.length>12?8:10}">${i+1}</text></g>`;const label=(z,e,x,y)=>[ ['zh',z],['en',e] ].map(([lang,lines])=>`<text class="diagram-label ${lang}" x="${x}" y="${y}" text-anchor="middle" fill="#eee" stroke="none">${(Array.isArray(lines)?lines:[lines]).map((line,j)=>`<tspan x="${x}" dy="${j?14:0}">${esc(line)}</tspan>`).join('')}</text>`).join('');let body='',phases=[],viewBox='0 0 360 203',artClass='library-line book-structure-art',wheelKind='';const nodeLabel=(z,e,x,y)=>['zh','en'].map(lang=>`<text class="diagram-label ${lang}" x="${x}" y="${y}" text-anchor="middle" dominant-baseline="middle" fill="#eee" stroke="none">${esc(lang==='zh'?z:e)}</text>`).join('');const stack=(z,e,x,y,anchor="middle",extra="")=>`<text class="diagram-label zh${extra?" "+extra:""}" x="${x}" y="${y}" text-anchor="${anchor}" fill="#eee" stroke="none">${esc(z)}</text><text class="diagram-label en${extra?" "+extra:""}" x="${x}" y="${y+22}" text-anchor="${anchor}" fill="#c8c5bf" stroke="none">${esc(e)}</text>`;
 if(type==='cycle'){if(model==='campbell')phases=[{p:['出发','Departure'],a:0,b:4,c:'#f2f2ee'},{p:['启蒙','Initiation'],a:5,b:10,c:'#f06552'},{p:['归返','Return'],a:11,b:16,c:'#a8a89f'}];else if(model==='vogler')phases=[{p:['第一幕 1–5','Act I · 1–5'],a:0,b:4,c:'#f2f2ee'},{p:['第二幕 6–9','Act II · 6–9'],a:5,b:8,c:'#f06552'},{p:['第三幕 10–12','Act III · 10–12'],a:9,b:11,c:'#a8a89f'}];if(options.plate&&!active.length&&(model==='campbell'||model==='vogler')&&!options.labels){const drawn=drawHeroWheel(model);body=drawn.body;viewBox=drawn.view;artClass+=' hero-wheel';wheelKind=model==='campbell'?'campbell-17':'vogler-12';}else{const n=labels.length,rr=model==='vogler'?62:72;body=`<circle cx="180" cy="101.5" r="${rr}" stroke="#8d8d86"/>`;if(model==='harmon')body+='<path class="harmon-quadrants" d="M108 101.5H252M180 29.5V173.5" stroke="#555" stroke-dasharray="3 4"/>'+label('日常／秩序',['Ordinary','Order'],52,62)+label('特殊／混沌',['Special','Chaos'],52,137);if(model==='vogler')body+=`<path data-diameter="ordinary-special" d="M${180-rr} 101.5H${180+rr}" stroke="#f2f2ee" stroke-width="1.35"/>`+label('日常 · 已知',['Ordinary','known'],180,78)+label('特殊 · 未知',['Special','unknown'],180,126);for(const ph of phases){const len=2*Math.PI*rr*(ph.b-ph.a+1)/n,off=2*Math.PI*rr*ph.a/n;body+=`<circle cx="180" cy="101.5" r="${rr}" fill="none" stroke="${ph.c}" stroke-width="5" stroke-dasharray="${len-4} ${2*Math.PI*rr-len+4}" stroke-dashoffset="${-off}" transform="rotate(-90 180 101.5)" opacity="${!active.length||active.some(i=>i>=ph.a&&i<=ph.b)?1:.28}"/>`;}body+=labels.map((_,i)=>{const a=-Math.PI/2+i*2*Math.PI/n;return number(180+rr*Math.cos(a),101.5+rr*Math.sin(a),i)}).join('');}}if(type==='beats'&&active.length){body=labels.map((_,i)=>{const x=24+i%5*64,y=32+Math.floor(i/5)*58;return `<g data-beat-card="${i+1}" opacity="${chosen(i)?1:.25}"><rect x="${x}" y="${y}" width="56" height="30" rx="3" fill="none" stroke="${chosen(i)?'#f5d266':'#aaa'}" stroke-width="${chosen(i)?2.5:1}"/><text x="${x+28}" y="${y+20}" text-anchor="middle" fill="#eee" stroke="none">${i+1}</text></g>`}).join('');body+='<path d="M20 84H338M146 144V180" stroke="#f5d266" stroke-dasharray="3 3"/>'+label('第一幕 1–5','Act I · 1–5',180,20)+label('第二幕 6–12','Act II · 6–12',180,78)+label('第三幕 13–15','Act III · 13–15',245,193);}
-if(type==='three'){
-const x0=36,x1=684,span=x1-x0,b1=x0+span*.25,b2=x0+span*.75,yBar=178;
-const acts=[[x0,b1],[b1,b2],[b2,x1]];
-const mid=i=>(acts[i][0]+acts[i][1])/2;
-const dim=i=>!active.length||active.includes(i)?1:.28;
-const names=[['第一幕','Act I'],['第二幕','Act II'],['第三幕','Act III']];
-const jobs=[['铺陈／建置','Setup'],['对抗','Confrontation'],['解决／结局','Resolution']];
-const pages=[['约 30 页','~30 pages'],['约 60 页','~60 pages'],['约 30 页','~30 pages']];
-body+=acts.map((band,i)=>`<g opacity="${dim(i)}">${stack(names[i][0],names[i][1],mid(i),40)}${stack(jobs[i][0],jobs[i][1],mid(i),86)}${stack(pages[i][0],pages[i][1],mid(i),128)}</g>`).join('');
-body+=`<path class="field-timeline" d="M${x0} ${yBar}H${x1}" stroke="#eee" stroke-width="4"/><path d="M${x1-8} ${yBar-6}l10 6-10 6" stroke="#eee" stroke-width="1.5"/>`;
-body+=[b1,b2].map(x=>`<path d="M${x} 152V210" stroke="#eee" stroke-width="3"/>`).join('');
-const cross=(x,y)=>`<path d="M${x-7} ${y-7}l14 14M${x+7} ${y-7}l-14 14" stroke="#f5d266" stroke-width="2"/>`;
-const inc=118,clx=628;
-body+=cross(inc,yBar)+cross(clx,yBar)+`<g class="tension-marks"><circle cx="360" cy="${yBar}" r="5" fill="#f5d266" stroke="#f5d266"/></g>`;
-body+=stack('激励事件','Inciting Incident',inc,236)+stack('中点','Midpoint',360,236)+stack('高潮 · 后段','Climax · late',clx,236);
-body+=stack('情节点 I','Plot Point I',b1,286)+stack('情节点 II','Plot Point II',b2,286);
-body+=stack('约 25–27 页','~p.25–27',b1,334)+stack('约 60 页','~p.60',360,334)+stack('约 85–90 页','~p.85–90',b2,334);
-body+=active.map(i=>`<rect x="${acts[i][0]}" y="22" width="${acts[i][1]-acts[i][0]}" height="156" fill="none" stroke="#f5d266" stroke-width="2"/>`).join('');
-}
-if(type==='pyramid'){body='<path d="M24 162H50L180 40L310 162H336M180 40V173" stroke="#888"/>'+[[50,162],[115,101],[180,40],[245,101],[310,162]].map(([x,y],i)=>number(x,y,i)).join('');}
-if(type==='pyramid')body+='<g class="freytag-transitions"><circle cx="82" cy="132" r="4" fill="#f5d266"/><circle cx="207" cy="65" r="4" fill="#f5d266"/><circle cx="279" cy="133" r="4" fill="#f5d266"/></g>'+label('A','A',75,120)+label('B','B',224,62)+label('C','C',292,122);
-if(type==='causal'){const box=(x,i,z,e)=>`<g data-stage="${i+1}" opacity="${chosen(i)?1:.26}"><rect x="${x}" y="22" width="92" height="44" rx="3" fill="none" stroke="${chosen(i)?'#eee':'#aaa'}" stroke-width="${chosen(i)?2:1.25}"/>${nodeLabel(z,e,x+46,44)}</g>`;const arrow=(x)=>`<path d="M${x} 44h22m-7-5 7 5-7 5" stroke="#eee"/>`;body=box(16,0,'开端','Beginning')+arrow(108)+nodeLabel('所以','so',125,30)+box(142,1,'中间','Middle')+arrow(234)+nodeLabel('所以','so',251,30)+box(268,2,'结尾','End');body+=`<g class="poetics-secondary"><path d="M52 132H308m-8-4 8 5-8 4" stroke="#888"/><circle class="poetics-hinge" cx="180" cy="132" r="4" fill="#f5d266" stroke="#f5d266"/>${label('结','desis',86,116)}${label('突转','peripeteia',180,116)}${label('解','lusis',274,116)}${label('次要','Secondary',180,158)}</g>`;}
-if(type==='tension'){
-const x0=48,x1=688,span=x1-x0,b1=x0+span*.25,b2=x0+span*.75,base=268;
-const pts=[[48,246],[140,204],[208,178],[268,188],[368,142],[448,156],[528,112],[590,86],[632,64],[668,128],[688,176]];
-let d=`M${pts[0][0]} ${pts[0][1]}`;
-for(let i=0;i<pts.length-1;i++){
- const p0=pts[Math.max(0,i-1)],p1=pts[i],p2=pts[i+1],p3=pts[Math.min(pts.length-1,i+2)];
- const c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6];
- const c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];
- d+=`C${c1[0].toFixed(1)} ${c1[1].toFixed(1)} ${c2[0].toFixed(1)} ${c2[1].toFixed(1)} ${p2[0]} ${p2[1]}`;
-}
-const cross=(x,y)=>`<path class="tension-obstacle" d="M${x-5} ${y-5}l10 10M${x+5} ${y-5}l-10 10" stroke="#aaa" stroke-width="1.5"/>`;
-const mark=(x,y,i,r=5)=>`<g class="tension-marks" data-stage="${i+1}" opacity="${chosen(i)?1:.45}"><circle cx="${x}" cy="${y}" r="${r}" fill="#f5d266" stroke="#f5d266"/></g>`;
-const ac=[[x0,b1],[b1,b2],[b2,x1]];
-const mid=i=>(ac[i][0]+ac[i][1])/2;
-body=`<path d="M${x0} ${base}H${x1}" stroke="#888"/><path d="M${b1} 56V${base}M${b2} 56V${base}" stroke="#555" stroke-dasharray="4 4"/>`;
-body+=`<path class="tension-curve" d="${d}" stroke="#eee" stroke-width="2.5"/>`;
-body+=cross(268,188)+cross(448,156)+cross(655,108);
-body+=mark(140,204,0)+mark(368,142,1)+mark(632,64,2,6.5)+mark(668,128,3);
-body+=stack('张力','Tension',78,78);
-body+=stack('情节点 I','Plot Point I',b1,28)+stack('情节点 II','Plot Point II',b2,28);
-body+=stack('激励事件','Inciting Incident',140,156);
-body+=stack('上升行动','Rising action',286,96);
-body+=stack('中点','Midpoint',430,112);
-body+=stack('障碍','Obstacle',268,214);
-body+=stack('高潮 · 后段','Climax · late',640,28);
-body+=stack('下降','Falling',674,214);
-body+=stack('收束','Denouement',600,168);
-const actN=[['第一幕','Act I'],['第二幕','Act II'],['第三幕','Act III']];
-const jobs=[['铺陈／建置','Setup'],['对抗','Confrontation'],['解决／结局','Resolution']];
-body+=actN.map((n,i)=>stack(n[0],n[1],mid(i),300)+stack(jobs[i][0],jobs[i][1],mid(i),346)).join('');
-}
+if(type==='three'){const drawn=drawFieldLine({stack,chosen,active});body=drawn.body;viewBox=drawn.view;}
+if(type==='pyramid'){const drawn=drawFreytagPyramid({stack,chosen,active});body=drawn.body;viewBox=drawn.view;}
+if(type==='causal'){const drawn=drawPoeticsChain({stack,chosen});body=drawn.body;viewBox=drawn.view;}
+if(type==='tension'){const drawn=drawTensionArc({stack});body=drawn.body;viewBox=drawn.view;}
 if(type==='flow')body=labels.map((_,i)=>{const x=44+i*272/(labels.length-1);return number(x,100,i)+(i<labels.length-1?`<path d="M${x+13} 100h${272/(labels.length-1)-26}m-7-5l7 5-7 5" stroke="#eee"/>`:'')}).join('');
-const transitions=type==='pyramid'?`<p class="freytag-force-caption">${dual(['转接力：A 激发力必要；B 悲剧力与 C 最后悬念之力可选。','Transition forces: the exciting force (A) is required; the tragic force (B) and the force of final suspense (C) are optional.'])}</p><div class="freytag-crisis-key">${dual(['A · 激发力（必要）','A · Exciting force (required)'])}${dual(['B · 悲剧力（可选）','B · Tragic force (optional)'])}${dual(['C · 最后悬念之力（可选）','C · Force of final suspense (optional)'])}</div><p class="freytag-climax-note">${dual(['高潮在金字塔中部，不同于现代三幕里偏后的高潮。','The climax is mid-pyramid, unlike the late climax of the modern three-act.'])}</p>`:type==='causal'?`<div class="poetics-secondary-key">${dual(['次要：结（desis）经突转（peripeteia）到解（lusis）。不是三幕，也不是闭合循环。','Secondary: complication (desis) turns on peripeteia into unraveling (lusis). Not three acts, and not a closed loop.'])}</div>`:type==='three'?`<div class="act-diagram-key">${dual(['竖线是幕间的情节点 I 与情节点 II。× 是激励事件（第一幕内）和高潮（第三幕后段）。中点在第二幕。','Vertical bars are Plot Point I and Plot Point II. The × marks are the Inciting Incident, inside Act I, and the Climax, late in Act III. The midpoint is in Act II.'])}${dual(['页码只属于约 120 页的菲尔德示意（约 30 / 60 / 30），不是《诗学》。铺陈与建置、解决与结局，是同一功能的两种说法。','Page counts belong only to the roughly 120-page Field sketch (about 30 / 60 / 30), not to Poetics. 铺陈 and 建置, like 解决 and 结局, are two names for one function.'])}</div>`:type==='tension'?`<div class="act-diagram-key">${dual(['当代教学曲线：张力上升，在第三幕后段到达高潮，然后才下降、收束。中点是转向，不是顶点。','A contemporary teaching curve: tension rises, reaches its climax late in Act III, and only then falls through the denouement. The midpoint is a turn, not the peak.'])}${dual(['× 是障碍，可反复出现，不是页码。此图不使用菲尔德页码，也不是弗赖塔格居中的高潮。','× marks are obstacles. They can recur and are not pages. This drawing uses no Field page scale, and it is not Freytag’s central climax.'])}</div>`:'';const autoCaption=options.caption||(wheelKind==='campbell-17'?['母题与常见变体，不是必须逐项完成的清单。','Motifs and common variations, not a mandatory checklist.']:wheelKind==='vogler-12'?['水平直径分开日常世界（已知）与特殊世界（未知）。弧段是第一幕 1–5、第二幕 6–9、第三幕 10–12。','The diameter splits the ordinary world (known) from the special world (unknown). Arcs mark Act I 1–5, Act II 6–9, and Act III 10–12.']:null);if(type==='three')viewBox='0 0 720 380';else if(type==='tension')viewBox='0 0 720 420';const frame=({'0 0 360 203':'<rect x=".75" y=".75" width="358.5" height="201.5" rx="3" fill="none"/>','0 0 720 380':'<rect x=".75" y=".75" width="718.5" height="378.5" rx="3" fill="none"/>','0 0 720 420':'<rect x=".75" y=".75" width="718.5" height="418.5" rx="3" fill="none"/>'})[viewBox]||'';const svg='<svg class="'+artClass+'" data-structure="'+type+'"'+(wheelKind?' data-hero-wheel="'+wheelKind+'"':'')+' viewBox="'+viewBox+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(title.join(' / ')+' — '+focusTitle.join(' / '))+'" fill="none" stroke="currentColor" stroke-width="1.5"><title>'+esc(title.join(' / ')+' — '+focusTitle.join(' / '))+'</title>'+frame+body+'</svg>';const diagram=(type==='beats'&&!active.length)?window.SaveTheCatPercentTimeline({heading:false}):(wheelKind?'<div class="hero-wheel-scroll"><p class="hero-wheel-hint">'+dual(['横向查看完整圆环','Scroll sideways for the full circle'])+'</p>'+svg+'</div>':svg);const readable=labels.map((p,i)=>`<li class="${chosen(i)?'is-focus':'is-dim'}" data-label-stage="${i+1}"><b>${i+1}</b>${dual(p)}</li>`).join('');return `<div class="book-structure-visual" data-model="${esc(model)}" data-layout="${type==='beats'&&!active.length?'percent':'stages'}" data-focus="${active.map(i=>i+1).join(',')}" data-row="${esc(focusTitle[1])}">${dual(title,'book-model-name')}${dual(focusTitle,'book-focus-heading')}${diagram}${transitions}${phases.length?`<div class="book-phase-key">${phases.map(ph=>`<span style="--phase-color:${ph.c}" class="${!active.length||active.some(i=>i>=ph.a&&i<=ph.b)?'is-focus':'is-dim'}">${dual(ph.p)}</span>`).join('')}</div>`:''}<ol class="book-stage-labels">${readable}</ol>${autoCaption?dual(autoCaption,'book-highlight-caption'):''}</div>`;};window.HeroJourneyDiagrams=()=>`<div class="hero-diagram-pair" data-hero-diagrams="two">${window.BookStructureArt('cycle',{model:'campbell',plate:true})}${window.BookStructureArt('cycle',{model:'vogler',plate:true})}</div>`;})();
+const transitions=type==='pyramid'?`<p class="freytag-force-caption">${dual(['三个转接力写在金字塔上：激发力必要；悲剧力与最后悬念之力可选。','The three transition forces are written on the pyramid: the exciting force is required; the tragic force and the force of final suspense are optional.'])}</p><p class="freytag-climax-note">${dual(['高潮在金字塔正中。第五部分是灾变，不是收束。这不同于现代三幕里偏后的高潮。','The climax is centered on the pyramid. The fifth part is catastrophe, not a denouement. This is unlike the late climax of the modern three-act.'])}</p>`:type==='causal'?`<div class="poetics-secondary-key">${dual(['次要：结（desis）经突转（peripeteia）到解（lusis）。不是三幕，也不是闭合循环。','Secondary: complication (desis) turns on peripeteia into unraveling (lusis). Not three acts, and not a closed loop.'])}</div>`:type==='three'?`<div class="act-diagram-key">${dual(['竖线是情节点 I 与情节点 II，字写在竖线下方。× 是第一幕里的激励事件，和第三幕后段的高潮。约 30／60／30 是页数比例。','Vertical bars are Plot Point I and Plot Point II, with the words under the bars. The × marks are the Inciting Incident, inside Act I, and the Climax, late in Act III. About 30 / 60 / 30 is the page proportion.'])}${dual(['页码只属于约 120 页的菲尔德示意（约 30 / 60 / 30），不是《诗学》。铺陈与建置、解决与结局，是同一功能的两种说法。','Page counts belong only to the roughly 120-page Field sketch (about 30 / 60 / 30), not to Poetics. 铺陈 and 建置, like 解决 and 结局, are two names for one function.'])}</div>`:type==='tension'?`<div class="act-diagram-key">${dual(['当代教学曲线：引介、上升、中点、第三幕后段的高潮、下降和收束都写在弧线上。中点是转向，不是顶点。','A contemporary teaching curve: introduction, rising action, the midpoint, a climax late in Act III, falling action, and the denouement are written on the arc. The midpoint is a turn, not the peak.'])}${dual(['× 是障碍，可反复出现，不是页码。此图不使用菲尔德页码，也不是弗赖塔格居中的高潮。','× marks are obstacles. They can recur and are not pages. This drawing uses no Field page scale, and it is not Freytag’s central climax.'])}</div>`:'';const autoCaption=options.caption||(wheelKind==='campbell-17'?['母题与常见变体，不是必须逐项完成的清单。','Motifs and common variations, not a mandatory checklist.']:wheelKind==='vogler-12'?['水平直径分开日常世界（已知）与特殊世界（未知）。弧段是第一幕 1–5、第二幕 6–9、第三幕 10–12。','The diameter splits the ordinary world (known) from the special world (unknown). Arcs mark Act I 1–5, Act II 6–9, and Act III 10–12.']:null);const frame=(viewBox==='0 0 360 203'?'<rect x=".75" y=".75" width="358.5" height="201.5" rx="3" fill="none"/>':(viewBox.startsWith('0 0 880')?'':`<rect x=".75" y=".75" width="${Number(viewBox.split(' ')[2])-1.5}" height="${Number(viewBox.split(' ')[3])-1.5}" rx="3" fill="none"/>`));const svg='<svg class="'+artClass+'" data-structure="'+type+'"'+(wheelKind?' data-hero-wheel="'+wheelKind+'"':'')+' viewBox="'+viewBox+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="'+esc(title.join(' / ')+' — '+focusTitle.join(' / '))+'" fill="none" stroke="currentColor" stroke-width="1.5"><title>'+esc(title.join(' / ')+' — '+focusTitle.join(' / '))+'</title>'+frame+body+'</svg>';const diagram=(type==='beats'&&!active.length)?window.SaveTheCatPercentTimeline({heading:false}):(wheelKind?'<div class="hero-wheel-scroll"><p class="hero-wheel-hint">'+dual(['横向查看完整圆环','Scroll sideways for the full circle'])+'</p>'+svg+'</div>':svg);const readable=labels.map((p,i)=>`<li class="${chosen(i)?'is-focus':'is-dim'}" data-label-stage="${i+1}"><b>${i+1}</b>${dual(p)}</li>`).join('');return `<div class="book-structure-visual" data-model="${esc(model)}" data-layout="${type==='beats'&&!active.length?'percent':'stages'}" data-focus="${active.map(i=>i+1).join(',')}" data-row="${esc(focusTitle[1])}">${dual(title,'book-model-name')}${dual(focusTitle,'book-focus-heading')}${diagram}${transitions}${phases.length?`<div class="book-phase-key">${phases.map(ph=>`<span style="--phase-color:${ph.c}" class="${!active.length||active.some(i=>i>=ph.a&&i<=ph.b)?'is-focus':'is-dim'}">${dual(ph.p)}</span>`).join('')}</div>`:''}<ol class="book-stage-labels">${readable}</ol>${autoCaption?dual(autoCaption,'book-highlight-caption'):''}</div>`;};window.HeroJourneyDiagrams=()=>`<div class="hero-diagram-pair" data-hero-diagrams="two">${window.BookStructureArt('cycle',{model:'campbell',plate:true})}${window.BookStructureArt('cycle',{model:'vogler',plate:true})}</div>`;})();
 /* Original 0–100% overview for Blake Snyder’s 15 beats.
    Positions follow the 110-page book, not a copied teaching poster.
    Act breaks are Break into Two (~25%) and Break into Three (~80%).

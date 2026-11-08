@@ -24,22 +24,39 @@ body .book-structure-visual svg.book-structure-art circle[fill="#111"]{fill:#111
 body svg.book-structure-art .diagram-label{font-size:12px!important;font-weight:400;letter-spacing:0;fill:#eee;stroke:none}
 html[data-mode=bi] .book-structure-art .diagram-label.en{display:none!important}
 html[data-mode=bi] svg.book-structure-art[data-structure="three"] .diagram-label.en,
-html[data-mode=bi] svg.book-structure-art[data-structure="tension"] .diagram-label.en{display:inline!important}
+html[data-mode=bi] svg.book-structure-art[data-structure="tension"] .diagram-label.en,
+html[data-mode=bi] svg.book-structure-art[data-structure="causal"] .diagram-label.en,
+html[data-mode=bi] svg.book-structure-art[data-structure="pyramid"] .diagram-label.en{display:inline!important}
 body svg.book-structure-art[data-structure="three"] .diagram-label.zh,
-body svg.book-structure-art[data-structure="tension"] .diagram-label.zh{font-size:16px!important;fill:#f4f1ea}
+body svg.book-structure-art[data-structure="tension"] .diagram-label.zh,
+body svg.book-structure-art[data-structure="causal"] .diagram-label.zh,
+body svg.book-structure-art[data-structure="pyramid"] .diagram-label.zh{font-size:20px!important;font-weight:600;fill:#f4f1ea}
 body svg.book-structure-art[data-structure="three"] .diagram-label.en,
-body svg.book-structure-art[data-structure="tension"] .diagram-label.en{font-size:13px!important;fill:#c8c5bf}
+body svg.book-structure-art[data-structure="tension"] .diagram-label.en,
+body svg.book-structure-art[data-structure="causal"] .diagram-label.en,
+body svg.book-structure-art[data-structure="pyramid"] .diagram-label.en{font-size:14px!important;fill:#c8c5bf}
+body svg.book-structure-art[data-structure="three"] .diagram-label.is-on,
+body svg.book-structure-art[data-structure="pyramid"] .diagram-label.is-on{fill:#f5d266!important}
 body svg.book-structure-art[data-structure="three"],
-body svg.book-structure-art[data-structure="tension"]{width:min(100%,1000px);min-width:760px;max-height:none;height:auto;aspect-ratio:auto;background:#111}
-body svg.book-structure-art[data-structure="three"]{aspect-ratio:720/380}
-body svg.book-structure-art[data-structure="tension"]{aspect-ratio:720/420}
+body svg.book-structure-art[data-structure="tension"],
+body svg.book-structure-art[data-structure="causal"],
+body svg.book-structure-art[data-structure="pyramid"]{width:min(100%,1100px);min-width:880px;max-width:none;max-height:none;height:auto;background:#111;color:#f2f2ee}
+body svg.book-structure-art[data-structure="three"]{aspect-ratio:960/500}
+body svg.book-structure-art[data-structure="tension"]{aspect-ratio:960/590}
+body svg.book-structure-art[data-structure="causal"]{aspect-ratio:980/490}
+body svg.book-structure-art[data-structure="pyramid"]{aspect-ratio:1280/640;min-width:1040px;width:min(100%,1180px)}
 .pdf-course[data-volume=three] .concept-visual svg.book-structure-art[data-structure="tension"],
-.pdf-course[data-volume=three] .act-paradigm svg.book-structure-art{max-height:none;aspect-ratio:auto}
-body[data-volume=three] .act-paradigm{margin:0 0 28px}
+.pdf-course[data-volume=three] .act-paradigm svg.book-structure-art,
+.pdf-course[data-volume=three] .poetics-chain svg.book-structure-art,
+.pdf-course[data-volume=freytag] .pyramid-study svg.book-structure-art{max-height:none}
+body[data-volume=three] .act-paradigm,
+body[data-volume=three] .poetics-chain{margin:0 0 28px}
 body[data-volume=three] .act-paradigm .book-structure-visual,
+body[data-volume=three] .poetics-chain .book-structure-visual,
 body[data-volume=three] .library-row:has(svg[data-structure="tension"]){display:block}
 body[data-volume=three] .library-row:has(svg[data-structure="tension"]) .concept-visual,
-body[data-volume=three] .act-paradigm .book-structure-visual{width:100%;max-width:none;overflow-x:auto;margin:0 0 12px}
+body[data-volume=three] .act-paradigm .book-structure-visual,
+body[data-volume=three] .poetics-chain .book-structure-visual{width:100%;max-width:none;overflow-x:auto;margin:0 0 12px}
 .act-diagram-key{display:grid;gap:8px;margin-top:12px;max-width:68ch;font-size:15px;line-height:1.55;color:var(--ink)}
 html[data-mode=bi] .act-diagram-key .en,
 html[data-mode=bi] body[data-volume=three] .book-stage-labels .en,
@@ -52,14 +69,17 @@ body[data-volume=story] .act-strip{grid-template-columns:20fr 60fr 20fr}
 .freytag-force-caption,.freytag-climax-note{margin:10px 0 0;max-width:68ch;font-size:15px;line-height:1.55;color:var(--muted)}
 .freytag-force-caption{margin-top:12px;color:var(--ink)}
 .freytag-crisis-key{display:grid;gap:6px;margin-top:8px;font-size:15px;line-height:1.55;color:var(--muted)}
-html[data-mode=bi] .freytag-crisis-key .en{display:none!important}
+html[data-mode=bi] .freytag-crisis-key .en{display:block!important;margin-top:3px;color:var(--muted)}
 html[data-mode=bi] .freytag-force-caption .en,html[data-mode=bi] .freytag-climax-note .en{display:block!important;margin-top:4px;color:var(--muted);font-size:15px;line-height:1.55}
 .poetics-secondary-key{margin-top:8px;font-size:13px;line-height:1.45;color:#c8c5bf}
-html[data-mode=bi] .poetics-secondary-key .en{display:none!important}
+html[data-mode=bi] .poetics-secondary-key .en{display:block!important;margin-top:4px;color:#c8c5bf}
 
-body svg.book-structure-art .freytag-transitions circle{fill:#f5d266}
+body svg.book-structure-art .freytag-transitions circle,
+body svg.book-structure-art .freytag-force{fill:#f5d266;stroke:#f5d266}
 body svg.book-structure-art .poetics-hinge,
 body svg.book-structure-art .tension-marks circle{fill:#f5d266;stroke:#f5d266}
+body :is(.concept-visual,.pyramid-study,.poetics-chain,.act-paradigm,.book-card-panel) svg.book-structure-art text{fill:#f4f1ea;stroke:none}
+body :is(.pyramid-study,.poetics-chain,.act-paradigm,.book-card-panel) svg.book-structure-art{background:#111}
 
 /* Books hub: five equal selectors in one row; one detail panel below. */
 body[data-volume=books] .books-hub{margin:8px 0 28px}
@@ -380,3 +400,57 @@ body svg.book-structure-art.hero-wheel text.wheel-label{
 }
 body svg.book-structure-art.hero-wheel text.wheel-phase{fill:#f2f2ee!important}
 body svg.book-structure-art.hero-wheel text.wheel-world{fill:#f5d266!important}
+
+/* Poetics trio and Freytag plate: full width, words on the drawing, scroll if needed. */
+.poetics-trio{display:flex;flex-direction:column;gap:36px;width:100%;min-width:0}
+.poetics-trio>.book-structure-visual{margin:0;padding:0 0 12px;border-bottom:1px solid #2c2c2a;overflow-x:auto}
+.poetics-trio>.book-structure-visual:last-child{border-bottom:0;padding-bottom:0}
+body[data-volume=books] .book-card-panel .poetics-trio,
+body[data-volume=books] .book-card-panel .poetics-trio .book-structure-visual{width:100%;max-width:none}
+html[data-mode=bi] body[data-volume=books] .poetics-trio .book-focus-heading .en,
+html[data-mode=bi] body[data-volume=books] .poetics-trio .book-highlight-caption .en,
+html[data-mode=bi] body[data-volume=books] .poetics-trio .act-diagram-key .en,
+html[data-mode=bi] body[data-volume=books] .poetics-trio .poetics-secondary-key .en,
+html[data-mode=bi] body[data-volume=freytag] .book-model-name .en,
+html[data-mode=bi] body[data-volume=freytag] .book-focus-heading .en,
+html[data-mode=bi] body[data-volume=freytag] .book-highlight-caption .en,
+html[data-mode=bi] body[data-volume=freytag] .book-stage-labels .en{display:block!important;margin-top:3px;color:#c8c5bf}
+body[data-volume=freytag] .pyramid-study,
+body[data-volume=freytag] .library-row:has(svg[data-structure="pyramid"]){display:block}
+body[data-volume=freytag] .pyramid-study .book-structure-visual,
+body[data-volume=freytag] .library-row:has(svg[data-structure="pyramid"]) .concept-visual{width:100%;max-width:none;overflow-x:auto;margin:0 0 16px}
+/* Beat the lesson-page rule that forces every concept svg back to 360/203 and 34vh. */
+.pdf-course .concept-visual svg.book-structure-art[data-structure="three"],
+.pdf-course .concept-visual svg.book-structure-art[data-structure="tension"],
+.pdf-course .concept-visual svg.book-structure-art[data-structure="causal"],
+.pdf-course .concept-visual svg.book-structure-art[data-structure="pyramid"],
+.pdf-course figure svg.book-structure-art[data-structure="three"],
+.pdf-course figure svg.book-structure-art[data-structure="tension"],
+.pdf-course figure svg.book-structure-art[data-structure="causal"],
+.pdf-course figure svg.book-structure-art[data-structure="pyramid"],
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="three"],
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="tension"],
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="causal"],
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="pyramid"]{
+  display:block;
+  width:min(100%,1180px);
+  min-width:880px;
+  max-width:none;
+  height:auto;
+  max-height:none;
+  aspect-ratio:auto;
+  object-fit:contain;
+  background:#111;
+}
+.pdf-course .concept-visual svg.book-structure-art[data-structure="pyramid"],
+.pdf-course figure svg.book-structure-art[data-structure="pyramid"],
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="pyramid"]{min-width:1040px;aspect-ratio:1280/640}
+.pdf-course .concept-visual svg.book-structure-art[data-structure="tension"],
+.pdf-course figure svg.book-structure-art[data-structure="tension"],
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="tension"]{aspect-ratio:960/590}
+.pdf-course .concept-visual svg.book-structure-art[data-structure="three"],
+.pdf-course figure svg.book-structure-art[data-structure="three"],
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="three"]{aspect-ratio:960/500}
+.pdf-course .concept-visual svg.book-structure-art[data-structure="causal"],
+.pdf-course figure svg.book-structure-art[data-structure="causal"],
+.pdf-course .book-card-panel svg.book-structure-art[data-structure="causal"]{aspect-ratio:980/490}
