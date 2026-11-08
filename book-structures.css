@@ -25,8 +25,11 @@ body svg.book-structure-art .diagram-label{font-size:12px!important;font-weight:
 html[data-mode=bi] .book-structure-art .diagram-label.en{display:none!important}
 body[data-volume=story] .act-strip{grid-template-columns:20fr 60fr 20fr}
 
-.freytag-crisis-key{display:grid;gap:5px;margin-top:9px;font-size:13px;line-height:1.4}
+.freytag-force-caption,.freytag-climax-note{margin:10px 0 0;max-width:68ch;font-size:15px;line-height:1.55;color:var(--muted)}
+.freytag-force-caption{margin-top:12px;color:var(--ink)}
+.freytag-crisis-key{display:grid;gap:6px;margin-top:8px;font-size:15px;line-height:1.55;color:var(--muted)}
 html[data-mode=bi] .freytag-crisis-key .en{display:none!important}
+html[data-mode=bi] .freytag-force-caption .en,html[data-mode=bi] .freytag-climax-note .en{display:block!important;margin-top:4px;color:var(--muted);font-size:15px;line-height:1.55}
 .poetics-secondary-key{margin-top:8px;font-size:13px;line-height:1.45;color:#c8c5bf}
 html[data-mode=bi] .poetics-secondary-key .en{display:none!important}
 
