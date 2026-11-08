@@ -14,6 +14,11 @@ body .book-structure-visual svg.book-structure-art [stroke="#aaa"]{stroke:#aaa}
 body .book-structure-visual svg.book-structure-art [stroke="#888"]{stroke:#888}
 body .book-structure-visual svg.book-structure-art [stroke="#555"]{stroke:#555}
 body .book-structure-visual svg.book-structure-art [stroke="#eee"]{stroke:#eee}
+body .book-structure-visual svg.book-structure-art [stroke="#f2f2ee"]{stroke:#f2f2ee}
+body .book-structure-visual svg.book-structure-art [stroke="#f06552"]{stroke:#f06552}
+body .book-structure-visual svg.book-structure-art [stroke="#a8a89f"]{stroke:#a8a89f}
+body .book-structure-visual svg.book-structure-art [stroke="#8d8d86"]{stroke:#8d8d86}
+body .book-structure-visual svg.book-structure-art [stroke="#0a0a0a"]{stroke:#0a0a0a}
 body .book-structure-visual svg.book-structure-art circle[fill="#111"]{fill:#111}
 
 body svg.book-structure-art .diagram-label{font-size:12px!important;font-weight:400;letter-spacing:0;fill:#eee;stroke:none}
@@ -346,3 +351,32 @@ body .timeline-shell .stc-percent{margin-bottom:6px}
 body #stc-percent-timeline{scroll-margin-top:140px}
 body[data-volume=books] .book-card-panel .stc-percent{margin-top:4px}
 @media(max-width:860px){body .stc-percent-hint{display:block}}
+
+/* Hero’s Journey: two separate plates. Campbell has no known/unknown split.
+   Vogler keeps the ordinary/special diameter and the 1–5 / 6–9 / 10–12 bands. */
+body .library-row.overview-row{display:block}
+body .overview-row .concept-visual,
+body .hero-overview,
+body .hero-diagram-pair{width:100%;max-width:none;min-width:0}
+body .hero-overview{margin:4px 0 28px}
+body .hero-diagram-pair{display:flex;flex-direction:column;gap:36px}
+body .hero-diagram-pair>.book-structure-visual{margin:0;padding-top:8px}
+body .hero-diagram-pair>.book-structure-visual+.book-structure-visual{border-top:1px solid #2c2c2a;padding-top:28px}
+.hero-wheel-scroll{overflow-x:auto;max-width:100%;min-width:0}
+.hero-wheel-hint{display:none;margin:0 0 8px;font-size:14px;line-height:1.4;color:#c3c3bd}
+@media(max-width:900px){.hero-wheel-hint{display:block}}
+body svg.book-structure-art.hero-wheel,
+.pdf-course .concept-visual svg.book-structure-art.hero-wheel,
+body[data-volume] svg.book-structure-art.hero-wheel{
+  width:880px;min-width:880px;max-width:none;height:auto;max-height:none;
+  aspect-ratio:880/860;object-fit:contain;background:#0a0a0a;color:#f2f2ee;
+}
+body svg.book-structure-art.hero-wheel text.wheel-num{
+  font-size:14px!important;font-weight:600;fill:#f2f2ee;stroke:none!important;
+}
+body svg.book-structure-art.hero-wheel text.wheel-label{
+  font-size:14px!important;font-weight:500;fill:#f2f2ee!important;
+  stroke:#0a0a0a!important;stroke-width:5px;paint-order:stroke fill;
+}
+body svg.book-structure-art.hero-wheel text.wheel-phase{fill:#f2f2ee!important}
+body svg.book-structure-art.hero-wheel text.wheel-world{fill:#f5d266!important}
