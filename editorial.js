@@ -32,6 +32,8 @@ if(page==='story'){
  const detail=document.querySelector('#beat-detail');
  function decorateBeat(){/* Every beat is illustrated in the named overview below. */}
  decorateBeat();new MutationObserver(decorateBeat).observe(detail,{childList:true});
+ const rhythm=document.querySelector('#beats .timeline-shell');
+ if(rhythm&&window.SaveTheCatPercentTimeline)rhythm.insertAdjacentHTML('beforebegin',window.SaveTheCatPercentTimeline({heading:true}));
  // A scannable editorial index complements (rather than replaces) the interactive timeline.
  const overview=document.createElement('div');overview.className='beat-overview';overview.innerHTML=dual('十五个节拍，一次看清','Fifteen beats at a glance','h3')+dual('先看每个节拍的功能，再观察人物的行动与改变。','Read each beat’s function, then observe the character’s actions and change.','p','small muted')+beats.map((b,i)=>`<article class="editorial-row">${lineVisual('《海底总动员》 · '+String(i+1).padStart(2,'0'),'Finding Nemo · '+b[1],i)}<div class="row-copy"><span class="index">${String(i+1).padStart(2,'0')} · ${percentText(i)}</span>${dual(b[0],b[1],'h3')}${dual(b[4],b[5],'p')}</div></article>`).join('');
  document.querySelector('#beats details').insertAdjacentElement('afterend',overview);
