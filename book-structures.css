@@ -18,6 +18,30 @@ body .book-structure-visual svg.book-structure-art circle[fill="#111"]{fill:#111
 
 body svg.book-structure-art .diagram-label{font-size:12px!important;font-weight:400;letter-spacing:0;fill:#eee;stroke:none}
 html[data-mode=bi] .book-structure-art .diagram-label.en{display:none!important}
+html[data-mode=bi] svg.book-structure-art[data-structure="three"] .diagram-label.en,
+html[data-mode=bi] svg.book-structure-art[data-structure="tension"] .diagram-label.en{display:inline!important}
+body svg.book-structure-art[data-structure="three"] .diagram-label.zh,
+body svg.book-structure-art[data-structure="tension"] .diagram-label.zh{font-size:16px!important;fill:#f4f1ea}
+body svg.book-structure-art[data-structure="three"] .diagram-label.en,
+body svg.book-structure-art[data-structure="tension"] .diagram-label.en{font-size:13px!important;fill:#c8c5bf}
+body svg.book-structure-art[data-structure="three"],
+body svg.book-structure-art[data-structure="tension"]{width:min(100%,1000px);min-width:760px;max-height:none;height:auto;aspect-ratio:auto;background:#111}
+body svg.book-structure-art[data-structure="three"]{aspect-ratio:720/380}
+body svg.book-structure-art[data-structure="tension"]{aspect-ratio:720/420}
+.pdf-course[data-volume=three] .concept-visual svg.book-structure-art[data-structure="tension"],
+.pdf-course[data-volume=three] .act-paradigm svg.book-structure-art{max-height:none;aspect-ratio:auto}
+body[data-volume=three] .act-paradigm{margin:0 0 28px}
+body[data-volume=three] .act-paradigm .book-structure-visual,
+body[data-volume=three] .library-row:has(svg[data-structure="tension"]){display:block}
+body[data-volume=three] .library-row:has(svg[data-structure="tension"]) .concept-visual,
+body[data-volume=three] .act-paradigm .book-structure-visual{width:100%;max-width:none;overflow-x:auto;margin:0 0 12px}
+.act-diagram-key{display:grid;gap:8px;margin-top:12px;max-width:68ch;font-size:15px;line-height:1.55;color:var(--ink)}
+html[data-mode=bi] .act-diagram-key .en,
+html[data-mode=bi] body[data-volume=three] .book-stage-labels .en,
+html[data-mode=bi] body[data-volume=three] .book-model-name .en,
+html[data-mode=bi] body[data-volume=three] .book-focus-heading .en,
+html[data-mode=bi] body[data-volume=three] .book-highlight-caption .en{display:block!important;margin-top:3px;color:#c8c5bf}
+html[data-mode=bi] body[data-volume=three] .act-diagram-key .en{color:var(--muted)}
 body[data-volume=story] .act-strip{grid-template-columns:20fr 60fr 20fr}
 
 .freytag-force-caption,.freytag-climax-note{margin:10px 0 0;max-width:68ch;font-size:15px;line-height:1.55;color:var(--muted)}
