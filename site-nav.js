@@ -35,7 +35,9 @@ const pages=[
   ['understanding-color.html','理解色彩','Color'],
   ['directors-workbook.html','导演手册','Workbook'],
   ['getting-unstuck.html','走出卡点','Unstuck'],
-  ['directors-voice.html','导演声音','Voice']
+  ['directors-voice.html','导演声音','Voice'],
+  ['perfect-opening.html','完美开场','Perfect Opening'],
+  ['perfect-endings.html','完美结尾','Perfect Endings']
 ];
 const nav=document.querySelector('.site-nav');
 if(nav){
