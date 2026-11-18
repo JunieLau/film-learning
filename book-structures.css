@@ -113,14 +113,14 @@ body[data-volume=books] .book-card{
   transition:border-color .15s ease,background-color .15s ease,box-shadow .15s ease;
 }
 body[data-volume=books] .book-card:hover{
-  border-color:#f06552;
-  background:#181410;
+  border-color:#f4ee0a;
+  background:#141414;
 }
 body[data-volume=books] .book-card.is-selected,
 body[data-volume=books] .book-card.is-selected:hover{
-  border-color:#f06552;
-  background:#2a1614;
-  box-shadow:inset 0 -4px 0 #f06552,inset 0 0 0 1px #f06552;
+  border-color:#f4ee0a;
+  background:#101010;
+  box-shadow:inset 0 -4px 0 #f4ee0a,inset 0 0 0 1px #f4ee0a;
   color:#fff;
 }
 body[data-volume=books] .book-card-title,
@@ -170,8 +170,8 @@ body[data-volume=books] .book-card-panel{
   min-width:0;
   margin:0;
   padding:18px 20px 20px;
-  border:1px solid #f06552;
-  background:#161210;
+  border:1px solid #f4ee0a;
+  background:#101010;
   box-sizing:border-box;
 }
 body[data-volume=books] .book-card-panel[hidden]{display:none!important}
@@ -182,7 +182,7 @@ body[data-volume=books] .book-card-panel .book-card-copy p{font-size:17px;line-h
 body[data-volume=books] .book-card-panel .book-model-name{color:#f7f4ee;font-size:15px;font-weight:650;line-height:1.3}
 body[data-volume=books] .book-card-panel .book-focus-heading{font-size:13px;font-weight:500;line-height:1.35}
 body[data-volume=books] .book-card-more{margin-top:14px}
-body[data-volume=books] .book-card-more a{color:#f06552;font-weight:650;text-decoration:none}
+body[data-volume=books] .book-card-more a{color:#f4ee0a;font-weight:650;text-decoration:none}
 body[data-volume=books] .book-card-more a:hover{text-decoration:underline}
 html[data-mode=bi] body[data-volume=books] .book-card-panel .book-model-name .en,
 html[data-mode=bi] body[data-volume=books] .book-card-panel .book-focus-heading .en,
@@ -194,7 +194,7 @@ html[data-mode=bi] body[data-volume=books] .book-card-more .en{
   line-height:1.3!important;
   color:rgba(242,242,238,.66)!important;
 }
-html[data-mode=bi] body[data-volume=books] .book-card-more .en{color:rgba(240,101,82,.82)!important}
+html[data-mode=bi] body[data-volume=books] .book-card-more .en{color:rgba(244,238,10,.82)!important}
 html[data-mode=bi] body[data-volume=books] .book-card-panel .book-card-copy p.reading-pair>.en{
   display:block!important;
   margin-top:6px!important;
@@ -250,9 +250,9 @@ html[data-mode=bi] body[data-volume=books] .library-chapters a .en{
 }
 body[data-volume=books] .library-chapters a.is-current,
 body[data-volume=books] .library-chapters a[aria-current="true"]{
-  border-color:#f06552;
-  background:#1a1210;
-  box-shadow:inset 0 0 0 1px #f06552;
+  border-color:#f4ee0a;
+  background:#101010;
+  box-shadow:inset 0 0 0 1px #f4ee0a;
   color:#fff!important;
 }
 @media(max-width:1279px){
@@ -285,7 +285,7 @@ body .stc-percent{
 body .stc-percent-title{margin:0 0 12px;font-size:18px;line-height:1.35;font-weight:600;color:#f2f2ee}
 body .stc-percent-hint{display:none;margin:0 0 8px;font-size:14px;line-height:1.4;color:#c3c3bd}
 body .stc-percent-scroll{overflow-x:auto}
-body .stc-percent-scroll:focus-visible{outline:2px solid #f06552;outline-offset:4px}
+body .stc-percent-scroll:focus-visible{outline:2px solid #f4ee0a;outline-offset:4px}
 body .stc-percent-board{
   position:relative;
   min-width:780px;

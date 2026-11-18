@@ -6,7 +6,7 @@ bar.classList.add('full-width-sitebar');
 if(!document.querySelector('link[data-site-nav-style]')){
   const css=document.createElement('link');
   css.rel='stylesheet';
-  css.href='./site-nav.css?v=20261108s';
+  css.href='./site-nav.css?v=20261118m';
   css.dataset.siteNavStyle='';
   document.head.appendChild(css);
 }

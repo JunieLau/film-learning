@@ -37,7 +37,7 @@ html:not([data-mode=bi]) .lesson-pair{grid-template-columns:minmax(0,1fr)}
 html[data-mode=bi] .pdf-course .lesson-hero h1>.en{font-size:.7em;margin-top:12px;line-height:1.4}
 .pdf-course .composition-jump-grid{grid-template-columns:repeat(5,minmax(0,1fr));grid-auto-rows:1fr;gap:24px;padding:24px 0;align-items:stretch}
 .pdf-course .composition-jump-grid>a{display:grid;grid-template-rows:auto 1fr;align-content:start;gap:14px;padding:0 0 18px;margin:0;min-width:0;height:100%;border:0}
-.pdf-course .composition-jump-grid img{width:100%;height:auto;aspect-ratio:1000/563;object-fit:contain;display:block;background:#101010;border:1px solid var(--rule)}
+.pdf-course .composition-jump-grid img{width:100%;height:auto;aspect-ratio:1000/563;object-fit:contain;display:block;background:#101010;border:1px solid #3a3a36}
 .pdf-course .composition-jump-grid>a>span{display:block;min-width:0;overflow-wrap:anywhere;font-size:16px;line-height:1.55}
 .pdf-course .composition-jump-grid .en{font-size:14px!important}
 .technique-row{padding:0 0 34px;margin:0 0 34px;border-bottom:1px solid var(--rule)}
@@ -52,7 +52,7 @@ html:not([data-mode=bi]) .technique-pair{grid-template-columns:minmax(0,1fr)}
 /* All FIVE teaching images in an entry share the same rendered dimensions. */
 .composition-media-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;align-items:stretch;margin:28px 0}
 .composition-media-grid figure{margin:0;min-width:0;display:flex;flex-direction:column}
-.composition-media-grid img{display:block;width:100%;height:auto;aspect-ratio:1000/563;object-fit:contain;background:#101010;border:1px solid var(--rule)}
+.composition-media-grid img{display:block;width:100%;height:auto;aspect-ratio:1000/563;object-fit:contain;background:#101010;border:1px solid #3a3a36}
 .composition-media-grid figcaption{flex:1;min-height:180px;padding-top:14px;font-size:15px;line-height:1.6;overflow-wrap:anywhere;color:var(--muted)}
 .composition-media-grid figcaption .en{font-size:14px!important}
 .frame-film-credit{display:block;font-size:13px;line-height:1.6;margin-top:12px;color:var(--muted)}
@@ -68,7 +68,7 @@ html:not([data-mode=bi]) .pdf-course .pdf-outline>a>span{grid-template-columns:m
 /* Junie's approved study hierarchy: two generous comparisons, three examples. */
 .pdf-course .study-media-grid{display:grid;grid-template-columns:repeat(var(--study-columns,3),minmax(0,1fr));gap:28px;align-items:stretch;margin:28px 0 36px}
 .pdf-course .study-media-grid>figure{margin:0;min-width:0;display:flex;flex-direction:column}
-.pdf-course .study-media-grid img{display:block;width:100%;height:auto;aspect-ratio:1000/563;object-fit:cover;background:#101010;border:1px solid var(--rule)}
+.pdf-course .study-media-grid img{display:block;width:100%;height:auto;aspect-ratio:1000/563;object-fit:cover;background:#101010;border:1px solid #3a3a36}
 .pdf-course .study-media-grid figcaption{height:112px;flex:none;display:flex;flex-direction:column;padding:14px 0 0;font-size:15px;line-height:1.6;overflow-wrap:anywhere;color:var(--muted)}
 .pdf-course .study-media-grid figcaption>.en{margin-top:auto;font-size:14px!important}
 .pdf-course .composition-entry .example-triptych figcaption{height:190px}
@@ -195,12 +195,12 @@ html[data-mode=bi] .pdf-course .lesson-section>h2>.en{margin-top:0!important}
 @media(max-width:700px){html[data-mode=bi] .pdf-course .lesson-section>h2{grid-template-columns:minmax(0,1fr);gap:8px}.pdf-course .lesson-section>.lesson-pair.prose{gap:12px}}
 
 /* Canonical sticky TOC: wrapping document flow at EVERY width; never a slider. */
-.pdf-course .sticky-toc{position:sticky;top:var(--topbar-height,112px);z-index:55;display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:5px;width:100%;max-width:100%;height:auto;max-height:none;margin:0;padding:6px max(3vw,calc((100vw - 1760px)/2));overflow:visible;overflow-x:visible;overflow-y:visible;scrollbar-width:none;border-bottom:1px solid var(--rule);background:#0a0a0a}
+.pdf-course .sticky-toc{position:sticky;top:var(--topbar-height,112px);z-index:55;display:flex;flex-wrap:wrap;justify-content:center;align-items:stretch;gap:5px;width:100%;max-width:100%;height:auto;max-height:none;margin:0;padding:6px max(3vw,calc((100vw - 1760px)/2));overflow:visible;overflow-x:visible;overflow-y:visible;scrollbar-width:none;border-bottom:1px solid var(--rule);background:#070707}
 .pdf-course .sticky-toc::-webkit-scrollbar{display:none}
 .pdf-course .toc-chip{display:flex;align-items:center;flex:0 0 calc((100% + 5px)/var(--toc-columns,7) - 5px);width:auto;min-width:0;max-width:none;height:46px;margin:0;padding:3px 7px;overflow:hidden;text-decoration:none;border:1px solid #444;border-radius:3px;font-size:12px;line-height:1.3;white-space:normal}
 .pdf-course .toc-chip>span{display:block;width:100%;min-width:0}
 .pdf-course .toc-chip .zh,.pdf-course .toc-chip .en{display:block;max-width:100%;margin:0;white-space:normal;font-size:11px!important;line-height:1.3!important}
-.pdf-course .toc-chip[aria-current=location]{border-color:var(--accent);color:var(--accent);background:#211210}
+.pdf-course .toc-chip[aria-current=location]{border-color:var(--accent);color:var(--accent);background:#101010}
 .pdf-course .numbered-toc .toc-chip{height:52px;padding:3px 5px;justify-content:flex-start;text-align:left;gap:4px}.pdf-course .named-toc .toc-number{width:auto;flex:0 0 17px}.pdf-course .named-toc .toc-name{overflow-wrap:anywhere;width:auto;flex:1;min-width:0;font-size:12px!important;line-height:1.2!important}.pdf-course .named-toc .toc-name.en{text-transform:capitalize}html[data-mode=bi] .named-toc .toc-name.en{display:none!important}
 .pdf-course .toc-number{font-size:12px;line-height:1;white-space:normal}
 .pdf-course .site-nav{flex-wrap:wrap;overflow:visible;overflow-x:visible;overflow-y:visible;white-space:normal}
