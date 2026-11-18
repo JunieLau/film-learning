@@ -27,9 +27,9 @@ html[data-mode=zh] body .en,html[data-mode=en] body .zh{display:none!important}
 
 /* BLACK EDITORIAL SYSTEM — 2026-11-07. Visual-only; all course/data modules retained.
    Opaque surfaces, readable sans typography, continuous prose, restrained actions. */
-:root{color-scheme:dark;--paper:#0a0a0a;--ink:#f2f2ee;--muted:#c3c3bd;--accent:#f06552;--rule:#393936;--wash:#161615;--measure:1248px;--serif:Arial,"Noto Sans SC","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",ui-sans-serif,system-ui,sans-serif;--body-size:clamp(18px,1.4vw,20px)}
+:root{color-scheme:dark;--paper:#070707;--ink:#f2f2ee;--muted:#c3c3bd;--accent:#f4ee0a;--rule:#f4f4f0;--wash:#161615;--measure:1248px;--serif:Arial,"Noto Sans SC","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",ui-sans-serif,system-ui,sans-serif;--body-size:clamp(18px,1.4vw,20px)}
 html{scroll-behavior:auto;scroll-snap-type:none}
-body{font-family:var(--serif);font-size:var(--body-size);line-height:1.8;font-weight:400;background:#0a0a0a;color:var(--ink)}
+body{font-family:var(--serif);font-size:var(--body-size);line-height:1.8;font-weight:400;background:#070707;color:var(--ink)}
 body button,body input,body textarea,body select{font-family:var(--serif);font-weight:400}
 body .zh{line-height:1.8;font-weight:400;letter-spacing:normal}
 body .en{line-height:1.65;letter-spacing:normal}
@@ -46,13 +46,13 @@ body h3,body .editorial-row h3,body .intention-card-body h3,body .director-rows 
 body h4,body .quiz h4,body .short-step h4{font-size:clamp(21px,1.6vw,23px);color:var(--ink)}
 body strong{font-weight:600}
 body a{color:var(--accent);text-decoration:underline;text-underline-offset:5px;text-decoration-thickness:1px;overflow-wrap:anywhere}
-body a:hover{text-decoration-thickness:2px;color:#ff8876}
+body a:hover{text-decoration-thickness:2px;color:#ffffff}
 body :is(button,a,input,textarea,select,summary,[tabindex]):focus-visible{outline:3px solid var(--accent);outline-offset:5px}
 body button{transition:color .14s ease,border-color .14s ease,background-color .14s ease}
 body button:hover{color:var(--ink)}
-::selection{background:#664036;color:#fff}
+::selection{background:#f4ee0a;color:#141407}
 body main,body footer{width:min(1248px,calc(100% - 112px));margin-inline:auto}
-body .topbar{background:#0a0a0a;border-bottom:1px solid var(--rule);padding:16px max(48px,calc((100vw - 1248px)/2));gap:28px;min-height:0;box-shadow:none;backdrop-filter:none}
+body .topbar{background:#070707;border-bottom:1px solid var(--rule);padding:16px max(48px,calc((100vw - 1248px)/2));gap:28px;min-height:0;box-shadow:none;backdrop-filter:none}
 body .brand{color:var(--ink);font-size:18px;text-decoration:none}
 body .brand-name .zh{font-weight:600;letter-spacing:normal}
 body .brand-name .en{font-size:15px!important;text-transform:none}
@@ -94,7 +94,7 @@ body .sidebar>.small{font-size:14px;color:var(--muted);margin-top:20px;}
 body .progress-track{background:#343431}
 body .chapter,body .cine-section{margin:0 0 88px;padding-bottom:80px;border-bottom:1px solid var(--rule);min-width:0}
 body .chapter-header{margin-bottom:36px}
-body .cine-nav{background:#0a0a0a;border-color:var(--rule);font-size:16px;gap:20px 28px;flex-wrap:wrap;justify-content:flex-start;padding:22px 0;margin-bottom:80px;}
+body .cine-nav{background:#070707;border-color:var(--rule);font-size:16px;gap:20px 28px;flex-wrap:wrap;justify-content:flex-start;padding:22px 0;margin-bottom:80px;}
 body .cine-nav a{color:var(--muted);text-decoration:none;max-width:340px;}
 body .cine-nav a:hover,body .cine-nav a:focus{color:var(--accent);}
 body .cine-nav a .en,body .library-chapters a .en{font-size:15px!important;line-height:1.65;color:inherit;}
@@ -107,7 +107,7 @@ body .director-checklist li{margin-bottom:22px}
 body .composition-subhead{font-size:clamp(26px,2.4vw,34px);color:var(--ink);margin:64px 0 24px}
 body .closing h3,body .callout h3,body .workshop h3,body .timeline-title h3,body .source-heading,body .still-collection>h3,body .beat-overview>h3{font-size:clamp(23px,2vw,28px);color:var(--ink)}
 body .callout,body .scene-example{padding:28px 0;margin:40px 0;border-color:var(--rule)}
-body .workshop,body .quiz{background:#141413;padding:30px;margin-top:48px;border:0;border-left:2px solid #494943}
+body .workshop,body .quiz{background:#101010;padding:30px;margin-top:48px;border:0;border-left:2px solid #f4ee0a}
 body .quiz-head,body .field-meta,body .workshop label{font-size:15px;color:var(--muted)}
 body .quiz-option{font-size:var(--body-size);padding:22px 8px 22px 34px;border-color:var(--rule);line-height:1.8;white-space:normal}
 body .quiz-option:before{top:24px;color:var(--muted)}
@@ -326,7 +326,7 @@ body .compact-compare tr>:last-child{padding-right:14px}
 body .compact-compare thead th{position:sticky;top:0;z-index:4;background:#20201e;color:#f2f2ee;font-size:15px;padding:12px 14px;border-bottom:1px solid #75756b;font-weight:600}
 body .compact-compare thead th:first-child{left:0;z-index:6}
 body .compact-compare thead button{display:block;width:100%;padding:0;text-align:left;font-size:15px;color:#f2f2ee;line-height:1.5}
-body .compact-compare .sort-arrow{font-size:14px;color:#f06552}
+body .compact-compare .sort-arrow{font-size:14px;color:#f4ee0a}
 body .compact-compare .compare-entry>th{position:sticky;left:0;z-index:2;box-shadow:1px 0 #45453e}
 body .compact-compare .compare-entry>*{background:#0a0a0a}
 body .compact-compare .compare-entry:nth-of-type(even)>*{background:#151514}
@@ -525,7 +525,7 @@ body .source-strip .evidence-links{display:flex;flex-wrap:wrap;gap:8px 20px;marg
 body .source-strip .evidence-links a{display:inline-block}
 body .cine-section>.source-strip:last-child{margin-bottom:0}
 body .cine-section:has(>.source-strip:last-child){padding-bottom:24px;margin-bottom:40px}
-body .library-line rect[fill="#fafaf8"]{fill:var(--wash);stroke:var(--rule)}
+body .library-line rect[fill="#fafaf8"]{fill:var(--wash);stroke:#393936}
 body .library-line{stroke:var(--muted);background:var(--wash)}
 body .overview-row .concept-visual{margin:4px 0 0;width:100%;max-width:none}
 body .overview-row .concept-visual svg{aspect-ratio:16/9;width:100%;height:auto}
@@ -590,3 +590,16 @@ body .lens-wide-grid figcaption{align-self:stretch;min-height:0;box-sizing:borde
 /* Extra director lessons: navigation must wrap instead of shrinking or overflowing. */
 html body .site-nav{flex-wrap:wrap;row-gap:12px;}
 @media(min-width:1101px) and (max-width:1600px){html body .topbar{flex-wrap:wrap}html body .site-nav{order:3;flex-basis:100%;margin:0;justify-content:flex-start;}html body .language{margin-left:auto}}
+
+/* Museum editorial skin: acid-yellow display titles on the existing sans metrics.
+   Section headings stay near-white. No font, size, spacing, or wrap changes. */
+html body h1,
+html body .hero h1,
+html body .cine-intro h1,
+html body .masthead-title,
+html body .lesson-intro h1{color:#f4ee0a}
+html[data-mode=bi] body h1 .en,
+html[data-mode=bi] body .hero h1 .en,
+html[data-mode=bi] body .cine-intro h1 .en,
+html[data-mode=bi] body .masthead-title .en,
+html[data-mode=bi] body .lesson-intro h1 .en{color:#c3c3bd}

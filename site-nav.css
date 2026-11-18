@@ -11,8 +11,8 @@ html body .topbar.full-width-sitebar{
   margin-inline:0!important;
   padding:14px 28px 16px!important;
   overflow:visible!important;
-  background:#0a0a0a!important;
-  border-bottom:1px solid #2a2a28!important;
+  background:#070707!important;
+  border-bottom:1px solid #f4f4f0!important;
   color:#f2f2ee!important;
   font-family:Arial,"Noto Sans SC","Noto Sans CJK SC","PingFang SC","Microsoft YaHei",ui-sans-serif,system-ui,sans-serif!important;
   letter-spacing:0!important;
@@ -63,8 +63,8 @@ html body .topbar.full-width-sitebar>.language{
   margin:0!important;
   gap:0!important;
   padding:0!important;
-  border:1px solid #3a3a36!important;
-  background:#111!important;
+  border:1px solid #f4f4f0!important;
+  background:#101010!important;
 }
 html body .topbar.full-width-sitebar .language button{
   font-size:13px!important;
@@ -77,12 +77,12 @@ html body .topbar.full-width-sitebar .language button{
   white-space:nowrap;
 }
 html body .topbar.full-width-sitebar .language button+button{
-  border-left:1px solid #3a3a36!important;
-  border-color:#3a3a36!important;
+  border-left:1px solid #f4f4f0!important;
+  border-color:#f4f4f0!important;
 }
 html body .topbar.full-width-sitebar .language button[aria-pressed="true"]{
-  background:#f06552!important;
-  color:#160806!important;
+  background:#f4ee0a!important;
+  color:#141407!important;
   font-weight:700!important;
   text-decoration:none!important;
 }
@@ -162,14 +162,14 @@ html[data-mode="bi"] body .topbar.full-width-sitebar .nav-label>.zh,
 html[data-mode="bi"] body .topbar.full-width-sitebar .nav-label>.en{display:block!important}
 
 html body .topbar.full-width-sitebar .site-nav>a:hover{
-  border-color:#5a403c!important;
-  background:#161311!important;
+  border-color:#f4ee0a!important;
+  background:#141414!important;
   color:#fff!important;
 }
 html body .topbar.full-width-sitebar .site-nav>a[aria-current="page"]{
-  border-color:#f06552!important;
-  background:#1c1210!important;
-  box-shadow:inset 0 -2px 0 #f06552!important;
+  border-color:#f4ee0a!important;
+  background:#101010!important;
+  box-shadow:inset 0 -2px 0 #f4ee0a!important;
   color:#fff!important;
 }
 html body .topbar.full-width-sitebar .site-nav>a[aria-current="page"] .nav-label>.zh,
