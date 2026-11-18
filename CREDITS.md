@@ -631,3 +631,50 @@ The Crown uses the official first-season promotional poster; the recommendation 
 ## Mastering B&W · Understanding Color · Director's Workbook
 - Text, frameworks, worksheets and all stills/diagrams on `mastering-bw.html`, `understanding-color.html` and `directors-workbook.html` are from the Film Reframed PDFs "Mastering B&W", "understanding color" and "director's workbook" (crops in `assets/mastering-bw/`, `assets/understanding-color/`, `assets/directors-workbook/`). The "6 Step Process For Planning and Observing Colors" list is from the user-supplied screenshot. Film-still rights remain with their rights holders.
 - New posters `assets/posters/nb-*.webp`: official theatrical posters via the films' English Wikipedia infoboxes (non-free, used for identification); rights with distributors.
+
+## Perfect Opening · Perfect Endings
+
+Original comparative directing workshops on `perfect-opening.html` and `perfect-endings.html`. The prose is this site’s own bilingual teaching. It paraphrases named tutorials, essays and interviews. It is not a film-school accreditation and not a transcript of those sources.
+
+### Original diagrams
+
+`assets/opening-endings/D01-knowledge-gap` through `D06-final-cut-and-sound`, SVG and PNG. Original teaching diagrams for Junie Lau Film Learning. They are classroom models, not film frames or universal formulas. D04’s distinction between story resolution and formal finality follows Richard Raskin’s discussion of Richard Neupert in [A Note on Closure in Truffaut’s Les 400 Coups](https://pov.imv.au.dk/Issue_02/section_3/artc3B.html).
+
+### Tutorial previews
+
+YouTube preview images are the creators’ `hqdefault.jpg` thumbnails, used only as the click-to-load preview for that creator’s player. They are not film stills, and no open licence is claimed. Rights remain with the respective owners.
+
+- [Art of the Opening Scene — How to Start a Movie 6 Different Ways, From Nolan to Baumbach](https://www.youtube.com/watch?v=Jw_ysaoVlt4) — [StudioBinder](https://www.youtube.com/@StudioBinder)
+- [Art of the Opening Scene Pt. 2 — 6 More Ways to Begin a Movie, From Scorsese to Tarantino](https://www.youtube.com/watch?v=r2vtbcfmFDY) — [StudioBinder](https://www.youtube.com/@StudioBinder)
+- [Art of the Opening Scene Pt. 3 — 6 More Ways to Start a Movie, From Fincher to Villeneuve](https://www.youtube.com/watch?v=LdEgQGdoFQA) — [StudioBinder](https://www.youtube.com/@StudioBinder)
+- [when a director knows how to start a movie](https://www.youtube.com/watch?v=aJ2lTtJcZ7w) — [Just One More Thing](https://www.youtube.com/@JustOneMoreThing_YT)
+- [9 Ways to End a Film](https://www.youtube.com/watch?v=zhhJIkpnvsE) — [StudioBinder](https://www.youtube.com/@StudioBinder)
+- [How to End a Movie](https://www.youtube.com/watch?v=V-YfeU82uqY) — [Now You See It](https://www.youtube.com/@NowYouSeeIt)
+- [How to End a Movie with an Epilogue — 8 Techniques Behind the Best Film Endings](https://www.youtube.com/watch?v=bZFMawBa5cI) — [StudioBinder](https://www.youtube.com/@StudioBinder)
+- [Martin Scorsese - The Art of Silence](https://www.youtube.com/watch?v=NUrTRjEXjSM) — [Every Frame a Painting](https://www.youtube.com/@everyframeapainting)
+- [Alfred Hitchcock On Mastering Cinematic Tension](https://www.youtube.com/watch?v=DPFsuc_M_3E) — [American Film Institute](https://www.youtube.com/@afi)
+
+### Title-sequence collaborators discussed
+
+*Se7en* (1995), feature director David Fincher. The title sequence discussed from [Art of the Title](https://www.artofthetitle.com/title/se7en/) is credited there to Kyle Cooper at R/Greenberg Associates West (a division of R/GA Digital Studios), in collaboration with David Fincher and Jenny Shainin, edited by Angus Wall. The article prints the music credit as a Coil/Danny Hide remix of Trent Reznor’s “Closer.” This workshop uses the remixer’s name Danny Hyde.
+
+### Readings linked from the workshops
+
+Publisher illustrations stay on the publishers’ pages and are not rehosted here.
+
+- Amy Taubin, [Chungking Express: Electric Youth](https://www.criterion.com/current/posts/766-chungking-express-electric-youth), The Criterion Collection
+- Art of the Title, [Touch of Evil (1958)](https://www.artofthetitle.com/title/touch-of-evil/)
+- Art of the Title, [Se7en (1995)](https://www.artofthetitle.com/title/se7en/)
+- Chris Wisniewski, [Best of the Decade #19: Children of Men](https://www.reverseshot.org/symposiums/entry/3/19_children_men), Reverse Shot
+- Stephen Dalton, [Children of Men](https://www.bfi.org.uk/features/children-men-alfonso-cuaron), BFI
+- Richard Raskin, [A Note on Closure in Truffaut’s Les 400 Coups](https://pov.imv.au.dk/Issue_02/section_3/artc3B.html)
+- Adam Scovell, [The 400 Blows locations](https://www.bfi.org.uk/features/400-blows-francois-truffaut-locations), BFI
+- Calum Marsh, [interview with Asghar Farhadi](https://hazlitt.net/feature/i-dont-really-believe-endings-interview-iranian-director-asghar-farhadi), Hazlitt
+- Michael Atkinson, [Late Spring: Home with Ozu](https://www.criterion.com/current/posts/421-late-spring-home-with-ozu), The Criterion Collection
+- Kent Jones, [Yi Yi: Time and Space](https://www.criterion.com/current/posts/429-yi-yi-time-and-space), The Criterion Collection
+- David Bordwell, [Watch again! Look well! Look! (For Ozu)](https://www.davidbordwell.net/blog/2013/12/12/watch-again-look-well-look-for-ozu/)
+- Tony Rayns, [Bong Joon Ho on Memories of Murder](https://www.bfi.org.uk/sight-and-sound/interviews/bong-joon-ho-memories-of-murder-2003-korean-cinema-breakthrough), BFI / Sight and Sound
+- Li Cheuk-to, [In the Mood for Love](https://www.criterion.com/current/posts/197-in-the-mood-for-love), The Criterion Collection
+- Sam Wigley, [Wong Kar Wai on In the Mood for Love at 25](https://www.bfi.org.uk/sight-and-sound/interviews/wong-kar-wai-mood-love-25), BFI / Sight and Sound
+- American Film Institute, [Asghar Farhadi on THE SALESMAN](https://www.afi.com/news/afi-conservatory-artist-in-residence-asghar-farhadi-on-the-salesman-inspired-by-hitchcock-and-kiarostami/)
+- Open Culture, [context for the 1970 AFI Hitchcock seminar](https://www.openculture.com/2011/11/alfred_hitchcocks_secret_sauce_for_creating_suspense-2.html)
